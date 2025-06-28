@@ -6,16 +6,18 @@ import { ApiService } from "../../service/api.service";
 
 const Main = () => {
   const [selectedCategory, setSelectedCategory] = useState("New");
-  // const [videos, setVideos] = useState([]);
-  const [videos, setVideos] = useState({ items: [] });
+  const [videos, setVideos] = useState([]);
+  // const [videos, setVideos] = useState({ items: [] });
 
   const selectedCategoryHandler = (category) => setSelectedCategory(category);
 
   useEffect(() => {
     const getData = async () => {
       try {
-        const data = await ApiService.fetching("search");
-        setVideos(data);
+        const data = await ApiService.fetching(
+          `search?part=snippet&q=${selectedCategory}`
+        );
+        setVideos(data.items);
       } catch (error) {
         console.log(error);
       }
