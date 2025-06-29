@@ -19,7 +19,7 @@ const Navbar = () => {
       }}
     >
       <Link to={"/"}>
-        <img src={logo} alt="logo" height={30} />
+        <img src={logo} alt="logo" className="logo" height={30} />
       </Link>
       <Searchbar />
       <Box />
