@@ -43,7 +43,7 @@ const ChannelCard = ({ video }) => {
         {video?.statistics?.subscriberCount && (
           <Typography sx={{ fontSize: "15px", fontWeight: 500, color: "gray" }}>
             {parseInt(video?.statistics?.subscriberCount).toLocaleString(
-              "en-EN"
+              "en-US"
             )}{" "}
             Subscribers
           </Typography>

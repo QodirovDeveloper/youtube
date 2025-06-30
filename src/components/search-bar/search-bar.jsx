@@ -2,13 +2,19 @@ import { useState } from "react";
 import { Paper, IconButton, InputBase } from "@mui/material";
 import { Search } from "@mui/icons-material";
 import { colors } from "../../constants/colors";
+import { useNavigate } from "react-router-dom";
 
 const SearchBar = () => {
   const [value, setValue] = useState("");
+  const navigate = useNavigate();
 
   const submitHandler = (e) => {
     e.preventDefault();
     console.log("Searching for:", value);
+    if (value) {
+      navigate(`/search/${value}`);
+      setValue('')
+    }
   };
 
   return (

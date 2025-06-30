@@ -1,19 +1,17 @@
 import { Box, Stack } from "@mui/material";
-import { ChannelCard, VideoCard } from "../";
+import { ChannelCard, VideoCard, Loader } from "../";
 
 const Videos = ({ videos }) => {
   if (!videos || videos.length === 0) {
-    return <div>No videos found.</div>;
+    return <Loader />;
   }
 
   return (
     <Stack
       width={"100%"}
-      direction={"row"}
-      flexWrap={"wrap"}
-      justifyContent={"start"}
-      alignItems={"center"}
       gap={2}
+      display="grid"
+      gridTemplateColumns="repeat(4, 1fr)"
     >
       {videos.map((item, index) => {
         // key uchun videoId yoki channelId yo'q bo'lsa index ni qo'llaymiz
