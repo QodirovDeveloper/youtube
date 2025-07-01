@@ -10,9 +10,10 @@ import {
 } from "@mui/material";
 
 import moment from "moment/moment";
+import { Link } from "react-router-dom";
 
 const VideoCard = ({ video }) => {
-  // console.log();
+  console.log(video);
   return (
     <Card
       sx={{
@@ -21,15 +22,20 @@ const VideoCard = ({ video }) => {
         borderRadius: 0,
       }}
     >
-      <CardMedia
-        image={
-          video?.snippet?.thumbnails?.high?.url ||
-          video?.snippet?.thumbnails?.medium?.url ||
-          video?.snippet?.thumbnails?.default?.url
-        }
-        alt={video?.snippet?.title}
-        sx={{ width: { xs: "100%", sm: "360px" }, height: "180px" }}
-      />
+      <Link
+        to={`/video/${video?.id?.videoId}`}
+        style={{ textDecoration: "none", color: "inherit" }}
+      >
+        <CardMedia
+          image={
+            video?.snippet?.thumbnails?.high?.url ||
+            video?.snippet?.thumbnails?.medium?.url ||
+            video?.snippet?.thumbnails?.default?.url
+          }
+          alt={video?.snippet?.title}
+          sx={{ width: { xs: "100%", sm: "360px" }, height: "180px" }}
+        />
+      </Link>
       <CardContent
         sx={{
           background: colors.primary,
@@ -37,7 +43,7 @@ const VideoCard = ({ video }) => {
           position: "relative",
         }}
       >
-        <>
+        <Link to={`/video/${video?.id?.videoId}`}>
           <Typography my={"5px"} sx={{ opacity: ".4" }}>
             {moment(video?.snippet?.publishedAt).fromNow()}
           </Typography>
@@ -47,7 +53,7 @@ const VideoCard = ({ video }) => {
           <Typography variant="subtitle2" sx={{ opacity: ".6" }}>
             {video?.snippet?.description.slice(0, 70)}
           </Typography>
-        </>
+        </Link>
         <>
           <Stack
             direction={"row"}

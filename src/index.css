@@ -3,6 +3,10 @@
   padding: 0;
   box-sizing: border-box;
 }
+a{
+  text-decoration: none;
+  color: #000;
+}
 
 .search-bar {
   border: none;
@@ -52,8 +56,16 @@
   color: #000;
 }
 
+.react-player{
+  height: 77vh !important;
+  margin: 100% !important;
+}
+
 @media (max-width: 400px) {
   .logo {
     width: 75px;
+  }
+  .react-player{
+    height: 45vh !important;
   }
 }
