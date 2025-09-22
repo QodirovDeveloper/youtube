@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { ApiService } from "../../service/api.service";
 import { Box, Chip } from "@mui/material";
-import TagIcon from "@mui/icons-material/Tag"; // to'g'ri ikon
-
+import TagIcon from "@mui/icons-material/Tag";
 import ReactPlayer from "react-player";
 
 const VideoDetail = () => {
@@ -34,26 +33,29 @@ const VideoDetail = () => {
   } = videoDetail;
 
   return (
-    <Box minHeight={"90vh"} mb={10}>
-      <Box display={"flex"}>
-        <Box width={"75%"}>
+    <Box minHeight={"90vh"} mb={10} px={{ xs: 2, sm: 3, md: 5 }}>
+      <Box display={"flex"} flexDirection={{ xs: "column", md: "row" }} gap={2}>
+        <Box width={{ xs: "100%", md: "75%" }}>
           <ReactPlayer
             url={`https://www.youtube.com/watch?v=${id}`}
-            // className="react-player" 
+            width="100%"
+            height="60vh"
             controls
           />
-          {tags?.map((item, idx) => (
-            <Chip
-              label={item}
-              key={idx}
-              sx={{ marginTop: "10px", cursor: "pointer", ml: "10px" }}
-              deleteIcon={<TagIcon />}
-              onDelete={() => {}}
-              variant="outlined"
-            />
-          ))}
+          <Box display="flex" flexWrap="wrap" mt={1}>
+            {tags?.map((item, idx) => (
+              <Chip
+                label={item}
+                key={idx}
+                sx={{ mt: "8px", cursor: "pointer", mr: "8px" }}
+                deleteIcon={<TagIcon />}
+                onDelete={() => {}}
+                variant="outlined"
+              />
+            ))}
+          </Box>
         </Box>
-        <Box width={"25%"}>Suggested video</Box>
+        <Box width={{ xs: "100%", md: "25%" }}>Suggested video</Box>
       </Box>
     </Box>
   );

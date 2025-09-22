@@ -7,10 +7,11 @@ import { Searchbar } from "../";
 const Navbar = () => {
   return (
     <Stack
-      direction={"row"}
-      alignItems={"center"}
-      justifyContent={"space-between"}
+      direction={{ xs: "column", sm: "row" }}
+      alignItems={{ xs: "flex-start", sm: "center" }}
+      justifyContent={{ xs: "center", sm: "space-between" }}
       p={2}
+      gap={{ xs: 2, sm: 0 }}
       sx={{
         position: "sticky",
         top: 0,

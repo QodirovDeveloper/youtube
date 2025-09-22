@@ -10,10 +10,9 @@ const SearchBar = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log("Searching for:", value);
     if (value) {
       navigate(`/search/${value}`);
-      setValue('')
+      setValue("");
     }
   };
 
@@ -25,7 +24,7 @@ const SearchBar = () => {
         p: "2px 4px",
         display: "flex",
         alignItems: "center",
-        width: { xs: "100%", sm: 500 },
+        width: { xs: "100%", sm: 500, md: 600 },
         borderRadius: "24px",
         boxShadow: "0 1px 6px rgba(0,0,0,0.2)",
         backgroundColor: colors.primary,
@@ -33,14 +32,23 @@ const SearchBar = () => {
       }}
     >
       <InputBase
-        sx={{ ml: 2, flex: 1, color: colors.text }}
+        sx={{
+          ml: 2,
+          flex: 1,
+          color: colors.text,
+          fontSize: { xs: "14px", sm: "16px" },
+        }}
         placeholder="Search..."
         inputProps={{ "aria-label": "search" }}
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
-      <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
-        <Search />
+      <IconButton
+        type="submit"
+        sx={{ p: { xs: "6px", sm: "10px" } }}
+        aria-label="search"
+      >
+        <Search fontSize="small" />
       </IconButton>
     </Paper>
   );
