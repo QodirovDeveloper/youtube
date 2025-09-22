@@ -8,10 +8,14 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import moment from "moment/moment";
+import moment from "moment";
 import { Link } from "react-router-dom";
 
 const VideoCard = ({ video }) => {
+  // videoId ni to‘g‘ri olish
+  const videoId = video?.id?.videoId || video?.id;
+  const channelId = video?.snippet?.channelId;
+
   return (
     <Card
       sx={{
@@ -21,7 +25,7 @@ const VideoCard = ({ video }) => {
       }}
     >
       <Link
-        to={`/video/${video?.id?.videoId}`}
+        to={videoId ? `/video/${videoId}` : `/channel/${channelId}`}
         style={{ textDecoration: "none", color: "inherit" }}
       >
         <CardMedia
@@ -45,7 +49,7 @@ const VideoCard = ({ video }) => {
         }}
       >
         <Link
-          to={`/video/${video?.id?.videoId}`}
+          to={videoId ? `/video/${videoId}` : `/channel/${channelId}`}
           style={{ textDecoration: "none", color: "inherit" }}
         >
           <Typography
@@ -59,13 +63,13 @@ const VideoCard = ({ video }) => {
             fontWeight={"bold"}
             sx={{ fontSize: { xs: "14px", sm: "16px" } }}
           >
-            {video?.snippet?.title.slice(0, 50)}
+            {video?.snippet?.title?.slice(0, 50)}
           </Typography>
           <Typography
             variant="subtitle2"
             sx={{ opacity: ".6", fontSize: { xs: "12px", sm: "14px" } }}
           >
-            {video?.snippet?.description.slice(0, 70)}
+            {video?.snippet?.description?.slice(0, 70)}
           </Typography>
         </Link>
         <Stack

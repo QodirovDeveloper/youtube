@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { ApiService } from "../../service/api.service";
-import { Box, Chip } from "@mui/material";
+import { Box, Chip, Typography } from "@mui/material";
 import TagIcon from "@mui/icons-material/Tag";
 import ReactPlayer from "react-player";
 
@@ -27,10 +27,9 @@ const VideoDetail = () => {
     return <div>Loading...</div>;
   }
 
-  const {
-    snippet: { title, channelId, channelTitle, description, tags, thumbnails },
-    statistics: { viewCount, likeCount, commentCount },
-  } = videoDetail;
+  const { snippet, statistics } = videoDetail;
+  const { title, channelId, channelTitle, description, tags } = snippet || {};
+  const { viewCount, likeCount, commentCount } = statistics || {};
 
   return (
     <Box minHeight={"90vh"} mb={10} px={{ xs: 2, sm: 3, md: 5 }}>
@@ -42,7 +41,20 @@ const VideoDetail = () => {
             height="60vh"
             controls
           />
-          <Box display="flex" flexWrap="wrap" mt={1}>
+
+          <Typography
+            variant="h6"
+            fontWeight="bold"
+            mt={2}
+            sx={{ fontSize: { xs: "16px", sm: "20px" } }}
+          >
+            {title}
+          </Typography>
+          <Typography variant="subtitle2" sx={{ opacity: ".7", mt: 1 }}>
+            {description}
+          </Typography>
+
+          <Box display="flex" flexWrap="wrap" mt={2}>
             {tags?.map((item, idx) => (
               <Chip
                 label={item}
@@ -54,7 +66,14 @@ const VideoDetail = () => {
               />
             ))}
           </Box>
+
+          <Typography variant="body2" mt={2}>
+            👁 {parseInt(viewCount).toLocaleString()} views • 👍{" "}
+            {parseInt(likeCount).toLocaleString()} likes • 💬{" "}
+            {parseInt(commentCount).toLocaleString()} comments
+          </Typography>
         </Box>
+
         <Box width={{ xs: "100%", md: "25%" }}>Suggested video</Box>
       </Box>
     </Box>
